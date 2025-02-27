@@ -2,7 +2,7 @@
 
 ### Create a network for the docker containers
 
-`docker network create demo`
+`docker network create mern`
 
 ### Build the client 
 
