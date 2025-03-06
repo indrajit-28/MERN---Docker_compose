@@ -1,7 +1,7 @@
 //import express from "express";
 const express = require("express");
 //import cors from "cors";
-const cors = require("cors");
+const cors = require("cors"); 
 //import records from "./routes/record.js";
 const records = require("./routes/record.js");
 
