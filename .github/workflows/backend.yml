@@ -27,7 +27,7 @@ jobs:
       - name: Pull and Deploy Backend
         working-directory: /var/www/MERN---Docker_compose/mern/backend
         run: |
-          echo "Pulling latest code for backend"
+          echo "Pulling latest code for backend" 
           
           git reset --hard origin/main
           rm -rf .git/refs/remotes/origin/main && 
