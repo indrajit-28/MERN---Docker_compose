@@ -28,6 +28,10 @@ jobs:
         working-directory: /var/www/MERN---Docker_compose/mern/backend
         run: |
           echo "Pulling latest code for backend"
+          git fetch --prune
+          git reset --hard origin/main
+          rm -rf .git/refs/remotes/origin/main &&
+          git fetch --all &&
           git pull origin main &&
           npm install &&
           pm2 restart server.mjs --name "mern-backend"
