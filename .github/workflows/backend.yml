@@ -30,4 +30,4 @@ jobs:
           echo "Pulling latest code for backend"
           git pull origin main
           npm install
-          npm run start  # Or any other command for backend deployment
+          pm2 restart server.mjs --name "mern-backend"
