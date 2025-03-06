@@ -30,7 +30,7 @@ jobs:
           echo "Pulling latest code for backend"
           git fetch --prune
           git reset --hard origin/main
-          rm -rf .git/refs/remotes/origin/main &&
+          rm -rf .git/refs/remotes/origin/main && 
           git fetch --all &&
           git pull origin main &&
           npm install &&
