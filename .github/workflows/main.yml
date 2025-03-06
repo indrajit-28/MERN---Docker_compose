@@ -52,6 +52,7 @@ jobs:
             git pull origin main && 
             
             npm install 
+            node -v
             
             
 
@@ -65,7 +66,7 @@ jobs:
           
 
             git pull origin main && 
-            node -v
+            
             npm -f install &&  #
             npm run build
 
