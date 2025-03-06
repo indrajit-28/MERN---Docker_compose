@@ -53,7 +53,7 @@ jobs:
             
             npm install &&  #
             
-            npm start
+            node server.js
 
       - name: Pull and Deploy frontend
 
