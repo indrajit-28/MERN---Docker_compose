@@ -25,11 +25,16 @@ jobs:
 
     steps:
 
-      - name: Checkout code
-
-        uses: actions/checkout@v1
+      - name: Set up SSH key for GitHub Actions
 
 
+        run: |
+          if [ ! -d "$HOME/.ssh" ]; then mkdir -p ~/.ssh; fi
+
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          sudo chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+         
 
 
       - name: Pull and Deploy Backend
