@@ -24,5 +24,6 @@ jobs:
         run: |
           echo "Pulling latest code for frontend"
           git pull origin main
+          nvm use 18
           npm install
           npm run build  # Or any other command for the frontend build process
