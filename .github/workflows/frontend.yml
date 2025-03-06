@@ -1,0 +1,28 @@
+name: Frontend Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  frontend:
+    runs-on: frontend  # This uses the runner labeled 'frontend'
+
+    steps:
+      - name: Set up SSH key for GitHub Actions
+        run: |
+          if [ ! -d "$HOME/.ssh" ]; then mkdir -p ~/.ssh; fi
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          sudo chown -R $USER:$USER ~/.ssh
+          sudo chmod 600 ~/.ssh/id_rsa
+          sudo chmod 700 ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Pull and Deploy Frontend
+        working-directory: /var/www/MERN---Docker_compose/mern/frontend
+        run: |
+          echo "Pulling latest code for frontend"
+          git pull origin main
+          npm install
+          npm run build  # Or any other command for the frontend build process
