@@ -65,9 +65,9 @@ jobs:
           
 
             git pull origin main && 
-            
+            node -v
             npm -f install &&  #
-            npx vite build
+            npm run build
 
             
 
