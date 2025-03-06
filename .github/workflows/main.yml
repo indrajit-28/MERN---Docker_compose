@@ -1,0 +1,49 @@
+name: Pull Data to Server
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest  
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  
+
+      - name: Pull and Deploy MERN App Backend
+        working-directory: /var/www/MERN---Docker_compose/mern/backend  # Path to the backend directory
+        run: |
+          echo "Pulling latest code for backend"
+
+          sudo sh -c '
+            git pull origin main && 
+            export PATH=/root/.nvm/versions/node/v10.19.0/bin:$PATH &&  
+            node -v &&  
+            npm -v &&  
+            npm install &&  #
+            npm run build && 
+            npm start  
+          '
+
+      - name: Pull and Deploy MERN App Frontend
+        working-directory: /var/www/MERN---Docker_compose/mern/frontend  # Path to the frontend directory
+        run: |
+          echo "Pulling latest code for frontend"
+
+          sudo sh -c '
+            git pull origin main &&  # Pull the latest code from the main branch
+            export PATH=/root/.nvm/versions/node/v10.19.0/bin:$PATH &&  # Ensure correct Node.js version is used
+            node -v &&  # Check Node.js version
+            npm -v &&  # Check npm version
+            npm install &&  # Install dependencies using npm
+            npm run build &&  # Build the frontend using npm
+            npm run dev  # Start the frontend server (adjust if you have a different start command)
+          '
+
+      - name: Cleanup
+        run: |
+          echo "Cleaning up unused files"
+          # Add any cleanup commands you need here
